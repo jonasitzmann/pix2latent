@@ -213,8 +213,9 @@ class VariableManager():
             else:
                 data = list(spec['distribution'](num_samples, spec['shape']))
 
+            device = 'cuda:0' if torch.cuda.is_available() else 'cpu'
             for i in range(len(data)):
-                data[i] = data[i].detach().clone().cuda().requires_grad_(False)
+                data[i] = data[i].detach().clone().to(device).requires_grad_(False)
 
             if spec['var_type'] not in vars.keys():
                 vars[spec['var_type']] = {}

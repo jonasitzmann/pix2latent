@@ -38,7 +38,9 @@ class BigGAN(nn.Module):
         with torch.no_grad():
             if type(cls) == int:
                 # converts to one hot
-                c = torch.zeros(1, 1000).float().cuda()
+                c = torch.zeros(1, 1000).float()
+                if torch.cuda.is_available():
+                    c = c.cuda()
                 c[:, cls] = 1
             elif len(cls.size()) == 2:
                 c = cls

@@ -2,7 +2,7 @@ import torch
 
 
 
-class TruncatedNormalModulo():
+class TruncatedNormalModulo:
     """
     Truncated normal distribution. Values that lie outside the truncation value
     are set to the remainder using float-modulo (fmod).

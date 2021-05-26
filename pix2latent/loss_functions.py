@@ -130,7 +130,7 @@ class PerceptualLoss(nn.Module):
         super(PerceptualLoss, self).__init__()
         self.loss_fn = lpips.LPIPS(net=net, spatial=True)
 
-        if use_gpu:
+        if torch.cuda.is_available():
             self.loss_fn = self.loss_fn.cuda()
 
         # current pip version does not support DataParallel
